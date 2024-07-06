@@ -13,7 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Manage Products button event listener
+  // Event listener for New Order button
+  const newOrderBtn = document.getElementById("newOrderBtn");
+  if (newOrderBtn) {
+    newOrderBtn.addEventListener("click", () => {
+      window.location.href = "order.html";
+    });
+  }
+
+  // Event listener for Manage Products button
   const manageProductsBtn = document.getElementById("manageProductsBtn");
   if (manageProductsBtn) {
     manageProductsBtn.addEventListener("click", () => {
