@@ -69,25 +69,69 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Order handling
-  const priceInput = document.getElementById("price");
-  const quantityInput = document.getElementById("quantity");
-  const totalInput = document.getElementById("total");
-  const calculateTotalBtn = document.getElementById("calculateTotalBtn");
+  const productContainer = document.getElementById("productContainer");
+  const addProductBtn = document.getElementById("addProductBtn");
 
-  if (calculateTotalBtn) {
-    calculateTotalBtn.addEventListener("click", () => {
-      const price = parseFloat(priceInput.value);
-      const quantity = parseInt(quantityInput.value);
+  // Function to calculate total for each product
+  function calculateTotal(productGroup) {
+    const priceInput = productGroup.querySelector(".price");
+    const quantityInput = productGroup.querySelector(".quantity");
+    const totalInput = productGroup.querySelector(".total");
 
-      if (!isNaN(price) && !isNaN(quantity)) {
-        totalInput.value = (price * quantity).toFixed(2);
-      } else {
-        totalInput.value = "";
-        alert("Please enter valid numbers for price and quantity.");
-      }
-    });
+    const price = parseFloat(priceInput.value);
+    const quantity = parseInt(quantityInput.value);
+
+    if (!isNaN(price) && !isNaN(quantity)) {
+      totalInput.value = (price * quantity).toFixed(2);
+    } else {
+      totalInput.value = "";
+    }
   }
 
+  // Add event listener for each price and quantity input to calculate total
+  function addCalculationEventListeners(productGroup) {
+    const priceInput = productGroup.querySelector(".price");
+    const quantityInput = productGroup.querySelector(".quantity");
+
+    priceInput.addEventListener("input", () => calculateTotal(productGroup));
+    quantityInput.addEventListener("input", () => calculateTotal(productGroup));
+  }
+
+  // Function to add a new product group
+  function addProductGroup() {
+    const productGroup = document.createElement("div");
+    productGroup.className = "product-group";
+
+    productGroup.innerHTML = `
+      <div class="form-group">
+        <label for="product">Product</label>
+        <input type="text" class="product" name="product" required />
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="price" name="price" required />
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="quantity" name="quantity" required />
+      </div>
+      <div class="form-group">
+        <label for="total">Total</label>
+        <input type="number" class="total" name="total" readonly />
+      </div>
+    `;
+
+    productContainer.appendChild(productGroup);
+    addCalculationEventListeners(productGroup);
+  }
+
+  addProductBtn.addEventListener("click", addProductGroup);
+
+  // Initialize the first product group
+  const initialProductGroup = document.querySelector(".product-group");
+  addCalculationEventListeners(initialProductGroup);
+
+  // Handle form submission
   const orderForm = document.getElementById("orderForm");
   if (orderForm) {
     orderForm.addEventListener("submit", (event) => {

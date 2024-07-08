@@ -16,29 +16,35 @@
           <label for="customerName">Customer Name</label>
           <input type="text" id="customerName" name="customerName" required />
         </div>
-        <div class="form-group">
-          <label for="product">Product</label>
-          <input type="text" id="product" name="product" required />
-        </div>
-        <div class="form-group">
-          <label for="price">Price</label>
-          <input type="number" id="price" name="price" required />
-        </div>
-        <div class="form-group">
-          <label for="quantity">Quantity</label>
-          <input type="number" id="quantity" name="quantity" required />
-        </div>
-        <div class="form-group">
-          <label for="total">Total</label>
-          <input type="number" id="total" name="total" readonly />
-        </div>
+        <button type="button" class="btn" id="addProductBtn">
+          Add Product Order
+        </button>
+        <div id="productList"></div>
         <div class="form-buttons">
-          <button type="button" class="btn" id="calculateTotalBtn">
-            Calculate Total
-          </button>
           <button type="submit" class="btn">Submit Order</button>
         </div>
       </form>
+
+      <!-- Modal for adding products -->
+      <div id="productModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Add Product</h2>
+          <div class="form-group">
+            <label for="product">Product</label>
+            <input type="text" id="modalProduct" name="product" required />
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="modalPrice" name="price" required />
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="modalQuantity" name="quantity" required />
+          </div>
+          <button type="button" class="btn" id="saveProductBtn">Save</button>
+        </div>
+      </div>
     </main>
     <script src="./js/order.js"></script>
   </body>
