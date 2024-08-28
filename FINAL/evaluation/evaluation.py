@@ -79,7 +79,7 @@ def evaluate_model_on_all_validation_data(model, tokenizer, eval_data):
     for data in attention_data:
         attention_scores, input_tokens, output_tokens, idx = data
         try:
-            #plot_attention_heatmap(attention_scores, input_tokens, output_tokens, idx)
+            plot_attention_heatmap(attention_scores, input_tokens, output_tokens, idx)
         except Exception as e:
             print(f"Error in generating heatmap for example {idx + 1}: {e}")
 

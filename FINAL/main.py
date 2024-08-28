@@ -76,6 +76,7 @@ def main(production_params, trial_number=None):
         f"{trial_output_dir}/trial_{trial_number}_token_length_distribution.png" if trial_number is not None else f"{trial_output_dir}/token_length_distribution.png")
     plt.close()
 
+
     # Visualisasi gabungan dari learning curve dan FBERT score
     plot_combined_learning_fbert(training_logs, fbert_scores)
     plt.title(
@@ -86,6 +87,8 @@ def main(production_params, trial_number=None):
 
     return avg_fbert_score
 
+    # Visualisasi heatmap untuk beberapa contoh acak dari data evaluasi
+    visualize_random_samples_attention(model, tokenizer, eval_data, num_samples=3)
 
 if __name__ == "__main__":
     use_optuna = True  # Ganti ini menjadi False jika tidak ingin menggunakan Optuna

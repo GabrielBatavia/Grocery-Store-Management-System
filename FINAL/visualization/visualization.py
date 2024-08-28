@@ -111,7 +111,7 @@ def visualize_random_samples_attention(model, tokenizer, eval_data, num_samples=
         for cmap in cmaps:
             for annot in annot_options:
                 for vmin, vmax in vmin_vmax_options:
-                    #plot_attention_heatmap(attention_scores, input_tokens, output_tokens, i, cmap=cmap, annot=annot, color_bar=True, vmin=vmin,vmax=vmax)
+                    plot_attention_heatmap(attention_scores, input_tokens, output_tokens, i, cmap=cmap, annot=annot, color_bar=True, vmin=vmin,vmax=vmax)
 
 
 def plot_learning_curve(training_logs, color='blue', linestyle='-', marker='o'):
